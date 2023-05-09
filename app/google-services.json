@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "410462454290",
+    "project_id": "reachmobi-6ec69",
+    "storage_bucket": "reachmobi-6ec69.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:410462454290:android:86567ad1fb09f4a81d4ecb",
+        "android_client_info": {
+          "package_name": "com.reachmobi.sports"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "410462454290-gd20tqo3usbb3entotg870mpoikt4rg7.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBUbYriLHDlM55oiQWlm2he_ANJsBCy10w"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "410462454290-gd20tqo3usbb3entotg870mpoikt4rg7.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/allSportsFragment">
+
+    <fragment
+        android:id="@+id/allSportsFragment"
+        android:name="com.reachmobi.sports.view.AllLeagueFragment">
+        <action
+            android:id="@+id/detailAction"
+            app:destination="@id/allTeamsFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/allTeamsFragment"
+        android:name="com.reachmobi.sports.view.AllTeamsFragment">
+
+        <argument
+            android:name="leagueId"
+            app:argType="string" />
+    </fragment>
+
+
+</navigation>

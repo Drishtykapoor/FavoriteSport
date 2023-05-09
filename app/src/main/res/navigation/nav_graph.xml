@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/homeFragment">
+
+    <fragment
+        android:id="@+id/homeFragment"
+        android:name="com.reachmobi.sports.view.HomeFragment">
+        <action
+            android:id="@+id/action_homeFragment_to_playersDetailFragment"
+            app:destination="@id/playersDetailFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_searchPlayersFragment"
+            app:destination="@id/searchPlayersFragment" />
+    </fragment>
+
+
+
+    <fragment
+        android:id="@+id/playersFragment"
+        android:name="com.reachmobi.sports.view.PlayersFragment" />
+
+    <fragment
+        android:id="@+id/playersDetailFragment"
+        android:name="com.reachmobi.sports.view.PlayerDetailFragment" />
+
+    <fragment
+        android:id="@+id/searchPlayersFragment"
+        android:name="com.reachmobi.sports.view.SearchPlayersFragment" />
+
+
+
+</navigation>
