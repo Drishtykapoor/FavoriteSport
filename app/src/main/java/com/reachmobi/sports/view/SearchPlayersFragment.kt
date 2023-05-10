@@ -7,9 +7,8 @@ import android.view.ViewGroup
 import androidx.core.view.isVisible
 import androidx.recyclerview.widget.GridLayoutManager
 import com.reachmobi.sports.MainActivity
-import com.reachmobi.sports.OnBoardingActivity
 import com.reachmobi.sports.R
-import com.reachmobi.sports.adapter.PlayersAdapter
+import com.reachmobi.sports.adapter.SearchPlayersAdapter
 import com.reachmobi.sports.databinding.SearchPlayersFragmentBinding
 import com.reachmobi.sports.repository.pojo.AllPlayers
 import com.reachmobi.sports.repository.viewstate.SearchPlayerViewState
@@ -22,7 +21,7 @@ class SearchPlayersFragment : DaggerFragment() {
     private lateinit var binding: SearchPlayersFragmentBinding
 
     @Inject
-    lateinit var adapter: PlayersAdapter
+    lateinit var adapter: SearchPlayersAdapter
 
     @Inject
     lateinit var viewModel: SearchPlayerViewModel
@@ -53,7 +52,7 @@ class SearchPlayersFragment : DaggerFragment() {
     override fun onResume() {
         super.onResume()
 
-        viewModel.getTeamsLiveData().observe(viewLifecycleOwner) {
+        viewModel.getAllPlayersLiveData().observe(viewLifecycleOwner) {
             when (it) {
                 SearchPlayerViewState.Empty -> showEmpty()
                 SearchPlayerViewState.Loading -> loading()

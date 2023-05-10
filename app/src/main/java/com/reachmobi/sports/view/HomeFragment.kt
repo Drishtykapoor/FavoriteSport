@@ -43,8 +43,8 @@ class HomeFragment : DaggerFragment() {
         // bind the viewPager with the TabLayout.
         TabLayoutMediator(tab, pager) { tab, position ->
             when (position) {
-                0 -> tab.text = "Sports"
-                else -> tab.text = "Players"
+                0 -> tab.text = context?.resources?.getText(R.string.team_detail)
+                else -> tab.text = context?.resources?.getText(R.string.team_players)
             }
         }.attach()
     }

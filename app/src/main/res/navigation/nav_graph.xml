@@ -19,11 +19,7 @@
 
     <fragment
         android:id="@+id/playersFragment"
-        android:name="com.reachmobi.sports.view.AllPlayersFragment" >
-        <action
-            android:id="@+id/action_playersFragment_to_playersDetailFragment"
-            app:destination="@id/playersDetailFragment" />
-    </fragment>
+        android:name="com.reachmobi.sports.view.AllPlayersFragment" />
 
     <fragment
         android:id="@+id/playersDetailFragment"
@@ -35,7 +31,11 @@
 
     <fragment
         android:id="@+id/searchPlayersFragment"
-        android:name="com.reachmobi.sports.view.SearchPlayersFragment" />
+        android:name="com.reachmobi.sports.view.SearchPlayersFragment" >
+        <action
+            android:id="@+id/action_searchPlayersFragment_to_playersDetailFragment"
+            app:destination="@id/playersDetailFragment" />
+    </fragment>
 
 
 

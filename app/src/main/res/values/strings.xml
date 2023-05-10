@@ -20,4 +20,6 @@
     <string name="select_fav_team">"Select Favorite Team "</string>
     <string name="search_player_hint">Danny</string>
     <string name="all_players_search">Universal Player Search</string>
+    <string name="team_detail">Team Detail</string>
+    <string name="team_players">Team Players</string>
 </resources>

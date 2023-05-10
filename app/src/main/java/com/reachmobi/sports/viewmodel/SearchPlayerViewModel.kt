@@ -6,5 +6,5 @@ import com.reachmobi.sports.repository.viewstate.PlayerDetailViewState
 
 interface SearchPlayerViewModel {
     fun getData(playerName: String)
-    fun getTeamsLiveData(): LiveData<SearchPlayerViewState>
+    fun getAllPlayersLiveData(): LiveData<SearchPlayerViewState>
 }

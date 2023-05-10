@@ -37,5 +37,5 @@ class SearchPlayerViewModelImpl(private val playersRepository: PlayersRepository
         }
     }
 
-    override fun getTeamsLiveData(): LiveData<SearchPlayerViewState> = teamsData
+    override fun getAllPlayersLiveData(): LiveData<SearchPlayerViewState> = teamsData
 }
