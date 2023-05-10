@@ -19,6 +19,7 @@
         android:layout_height="40dp"
         android:layout_marginTop="10dp"
         android:textColor="@color/black"
+        android:hint="@string/search_player_hint"
         app:layout_constraintTop_toTopOf="parent" />
 
     <Button

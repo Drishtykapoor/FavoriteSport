@@ -17,6 +17,7 @@ import com.reachmobi.sports.adapter.AllTeamsListAdapter
 import com.reachmobi.sports.databinding.AllTeamsFragmentBinding
 import com.reachmobi.sports.repository.pojo.AllTeamsResponse
 import com.reachmobi.sports.repository.viewstate.AllTeamsViewState
+import com.reachmobi.sports.util.FavSportsLogger
 import com.reachmobi.sports.viewmodel.AllTeamsViewModel
 import dagger.android.support.DaggerFragment
 import javax.inject.Inject
@@ -30,6 +31,9 @@ class AllTeamsFragment : DaggerFragment() {
 
     @Inject
     lateinit var teamsViewModel: AllTeamsViewModel
+
+    @Inject
+    lateinit var logger: FavSportsLogger
 
     private val args: AllTeamsFragmentArgs by navArgs()
 
@@ -50,6 +54,7 @@ class AllTeamsFragment : DaggerFragment() {
             resources.getText(R.string.select_fav_team)
         binding.trackteam.setOnClickListener {
             val teamID = teamsAdapter.getSelectedTeamId()
+            teamID?.let {  logger.logButtonClick(binding.trackteam.text.toString(), it) }
             if (teamID.isNullOrEmpty()) {
                 Toast.makeText(context, "Invalid Selection", Toast.LENGTH_LONG).show()
             } else {

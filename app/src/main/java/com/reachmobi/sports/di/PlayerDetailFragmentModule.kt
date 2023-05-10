@@ -1,6 +1,7 @@
 package com.reachmobi.sports.di
 
 import com.reachmobi.sports.view.HomeFragment
+import com.reachmobi.sports.view.PlayerDetailFragment
 import dagger.Module
 import dagger.android.ContributesAndroidInjector
 
@@ -9,7 +10,8 @@ abstract class PlayerDetailFragmentModule {
 
     @ContributesAndroidInjector(
         modules = [
+            PlayerDetailFragmentDependenciesModule::class
         ]
     )
-    abstract fun provideHomeFragment(): HomeFragment
+    abstract fun providePlayerDetailFragment(): PlayerDetailFragment
 }

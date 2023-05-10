@@ -1,10 +1,9 @@
 package com.reachmobi.sports.viewmodel
 
 import androidx.lifecycle.LiveData
-import com.reachmobi.sports.repository.viewstate.SearchPlayerViewState
 import com.reachmobi.sports.repository.viewstate.PlayerDetailViewState
 
-interface SearchPlayerViewModel {
+interface PlayerDetailViewModel {
     fun getData(playerName: String)
-    fun getTeamsLiveData(): LiveData<SearchPlayerViewState>
+    fun getPlayerDetailLiveData(): LiveData<PlayerDetailViewState>
 }

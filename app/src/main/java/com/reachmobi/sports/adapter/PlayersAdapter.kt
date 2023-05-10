@@ -10,9 +10,15 @@ import androidx.navigation.NavController
 import androidx.recyclerview.widget.RecyclerView
 import com.reachmobi.sports.R
 import com.reachmobi.sports.repository.pojo.Player
+import com.reachmobi.sports.util.FavSportsLogger
+import com.reachmobi.sports.view.HomeFragmentDirections
 import com.squareup.picasso.Picasso
+import javax.inject.Inject
 
-class PlayersAdapter(val navController: NavController) :
+class PlayersAdapter @Inject constructor(
+    private val navController: NavController,
+    private val logger: FavSportsLogger
+) :
     RecyclerView.Adapter<PlayersAdapter.ViewHolder>() {
 
     private val mydata = mutableListOf<Player>()
@@ -38,19 +44,23 @@ class PlayersAdapter(val navController: NavController) :
 
         fun doSomething(sport: Player) {
             name.text = sport.strPlayer
-            if (sport.strThumb.isNullOrEmpty())
-                image.setImageDrawable(
-                    ContextCompat.getDrawable(itemView.context, R.drawable.sports_generic)
-                )
-            else
-                Picasso.with(itemView.context)
-                    .load(sport.strThumb)
-                    .into(image)
+            if (sport.strThumb.isNullOrEmpty()) image.setImageDrawable(
+                ContextCompat.getDrawable(itemView.context, R.drawable.sports_generic)
+            )
+            else Picasso.with(itemView.context).load(sport.strThumb).into(image)
         }
 
         init {
             itemView.setOnClickListener {
-
+                logger.logRowClick(
+                    mydata[bindingAdapterPosition].strPlayer,
+                    mydata[bindingAdapterPosition].idTeam
+                )
+                navController.navigate(
+                    HomeFragmentDirections.actionHomeFragmentToPlayersDetailFragment(
+                        mydata[bindingAdapterPosition].strPlayer
+                    )
+                )
             }
         }
 
@@ -59,7 +69,7 @@ class PlayersAdapter(val navController: NavController) :
     fun setData(listSportsData: List<Player>) {
         val oldItemCount = mydata.size
         mydata.clear()
-        notifyItemRangeRemoved(0, oldItemCount);
+        notifyItemRangeRemoved(0, oldItemCount)
         mydata.addAll(listSportsData)
         notifyItemRangeInserted(0, listSportsData.size)
     }

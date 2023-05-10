@@ -17,6 +17,7 @@ abstract class OnBoardingActivityModule {
             NavigationModule::class,
             AllLeagueFragmentModule::class,
             AllTeamsFragmentModule::class,
+            LoggerModule::class,
             ApiModule::class
         ]
     )

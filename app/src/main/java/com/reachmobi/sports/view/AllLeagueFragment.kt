@@ -45,6 +45,7 @@ class AllLeagueFragment : DaggerFragment() {
                 AllLeagueViewState.Loading -> showLoading()
                 is AllLeagueViewState.Success -> showSuccess(it.allLeagues)
                 is AllLeagueViewState.Error -> showError()
+                else -> {}
             }
         }
         viewModel.getData()

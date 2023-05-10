@@ -2,6 +2,7 @@
     <string name="app_name">Sports App</string>
     <string name="sports_name">Sports</string>
     <string name="sports_item_name">Sport Name :</string>
+    <string name="team_item_name">Team Name :</string>
     <string name="players_item_name">Player Name :</string>
     <string name="description">Description :</string>
     <string name="players_name">Players</string>
@@ -17,4 +18,6 @@
     <string name="welcome_to_onboarding">Welcome To Onboarding</string>
     <string name="select_league">Select Fav League</string>
     <string name="select_fav_team">"Select Favorite Team "</string>
+    <string name="search_player_hint">Danny</string>
+    <string name="all_players_search">Universal Player Search</string>
 </resources>

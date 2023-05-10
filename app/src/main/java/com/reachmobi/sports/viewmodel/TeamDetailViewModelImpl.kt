@@ -6,6 +6,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.reachmobi.sports.repository.TeamsRepository
+import com.reachmobi.sports.repository.viewstate.PlayerDetailViewState
 import com.reachmobi.sports.repository.viewstate.TeamDetailViewState
 import com.reachmobi.sports.repository.viewstate.TeamEventViewState
 import kotlinx.coroutines.*

@@ -2,15 +2,16 @@ package com.reachmobi.sports.adapter
 
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentActivity
-import androidx.navigation.NavController
 import androidx.viewpager2.adapter.FragmentStateAdapter
-import com.reachmobi.sports.view.PlayersFragment
+import com.reachmobi.sports.view.AllPlayersFragment
 import com.reachmobi.sports.view.TeamDetailFragment
 
 class HomeViewPagerAdapter(fragment: FragmentActivity) :
     FragmentStateAdapter(fragment) {
 
-    private val mDataSet = listOf(TeamDetailFragment(), PlayersFragment())
+    private val mDataSet = listOf<Fragment>(TeamDetailFragment(),
+        AllPlayersFragment()
+    )
 
     override fun getItemCount(): Int = 2
 

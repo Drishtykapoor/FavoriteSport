@@ -9,7 +9,8 @@ abstract class SearchPlayersFragmentModule {
 
     @ContributesAndroidInjector(
         modules = [
+            SearchPlayerFragmentDependenciesModule::class
         ]
     )
-    abstract fun provideHomeFragment(): SearchPlayersFragment
+    abstract fun provideSearchFragment(): SearchPlayersFragment
 }

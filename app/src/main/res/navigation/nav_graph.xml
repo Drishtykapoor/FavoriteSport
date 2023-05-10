@@ -19,11 +19,19 @@
 
     <fragment
         android:id="@+id/playersFragment"
-        android:name="com.reachmobi.sports.view.PlayersFragment" />
+        android:name="com.reachmobi.sports.view.AllPlayersFragment" >
+        <action
+            android:id="@+id/action_playersFragment_to_playersDetailFragment"
+            app:destination="@id/playersDetailFragment" />
+    </fragment>
 
     <fragment
         android:id="@+id/playersDetailFragment"
-        android:name="com.reachmobi.sports.view.PlayerDetailFragment" />
+        android:name="com.reachmobi.sports.view.PlayerDetailFragment" >
+        <argument
+            android:name="name"
+            app:argType="string" />
+    </fragment>
 
     <fragment
         android:id="@+id/searchPlayersFragment"

@@ -12,5 +12,5 @@ abstract class AllLeagueFragmentModule {
             AllLeagueFragmentDependenciesModule::class,
         ]
     )
-    abstract fun provideHomeFragment(): AllLeagueFragment
+    abstract fun provideAllLeagueFragment(): AllLeagueFragment
 }

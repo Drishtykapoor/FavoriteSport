@@ -10,14 +10,14 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.android.gms.ads.AdRequest
 import com.reachmobi.sports.adapter.TeamEventsAdapter
 import com.reachmobi.sports.databinding.TeamDetailFragmentBinding
+import com.reachmobi.sports.repository.viewstate.PlayerDetailViewState
 import com.reachmobi.sports.repository.viewstate.TeamDetailViewState
 import com.reachmobi.sports.repository.viewstate.TeamEventViewState
-import com.reachmobi.sports.viewmodel.TeamDetailViewModelImpl
+import com.reachmobi.sports.viewmodel.TeamDetailViewModel
 import com.squareup.picasso.Picasso
-import dagger.android.support.DaggerFragment
 import javax.inject.Inject
 
-class TeamDetailFragment : DaggerFragment() {
+open class TeamDetailFragment : FavSportsDaggerFragment() {
 
     private lateinit var binding: TeamDetailFragmentBinding
 
@@ -25,7 +25,7 @@ class TeamDetailFragment : DaggerFragment() {
     lateinit var teamEventsAdapter: TeamEventsAdapter
 
     @Inject
-    lateinit var viewModel: TeamDetailViewModelImpl
+    lateinit var viewModel: TeamDetailViewModel
 
     override fun onCreateView(
         inflater: LayoutInflater,

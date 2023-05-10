@@ -2,19 +2,20 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
+    android:background="@color/black"
     android:layout_height="match_parent">
 
     <TextView
         android:id="@+id/error"
-        android:layout_width="0dp"
-        android:layout_height="30dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_marginVertical="@dimen/margin_large"
         android:gravity="center"
         android:paddingStart="@dimen/padding_large"
         android:paddingEnd="@dimen/padding_large"
         android:visibility="gone"
-        android:text="@string/players_item_name"
-        android:textColor="@color/dark_blue"
+        android:text="@string/something_went_wrong"
+        android:textColor="@color/white"
         android:textSize="20sp"
         android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
@@ -22,8 +23,8 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"/>
 
-    <androidx.viewpager2.widget.ViewPager2
-        android:id="@+id/viewpager"
+    <ImageView
+        android:id="@+id/image"
         android:layout_width="0dp"
         android:layout_height="300dp"
         android:layout_marginVertical="@dimen/margin_large"
@@ -42,10 +43,10 @@
         android:layout_height="wrap_content"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/viewpager">
+        app:layout_constraintTop_toBottomOf="@+id/image">
 
         <TextView
-            android:id="@+id/titleTV"
+            android:id="@+id/teamTitle"
             android:layout_width="0dp"
             android:layout_height="30dp"
             android:layout_marginVertical="@dimen/margin_large"
@@ -53,9 +54,8 @@
             android:paddingStart="@dimen/padding_large"
             android:paddingEnd="@dimen/padding_large"
             android:text="@string/players_item_name"
-            android:textColor="@color/dark_blue"
+            android:textColor="@color/white"
             android:textSize="14sp"
-            android:textStyle="bold"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintWidth_min="@dimen/sat_score_label_min_width" />
@@ -69,12 +69,12 @@
             android:gravity="center_vertical"
             android:paddingStart="@dimen/padding_large"
             android:paddingEnd="@dimen/padding_large"
-            android:textColor="@color/dark_blue"
+            android:textColor="@color/white"
             android:textSize="14sp"
             android:textStyle="bold"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/titleTV"
+            app:layout_constraintStart_toEndOf="@+id/teamTitle"
             app:layout_constraintTop_toTopOf="parent" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
@@ -88,7 +88,7 @@
         app:layout_constraintTop_toBottomOf="@+id/name_row">
 
         <TextView
-            android:id="@+id/critical_reading_tv"
+            android:id="@+id/description_tv"
             android:layout_width="0dp"
             android:layout_height="30dp"
             android:layout_marginVertical="@dimen/margin_large"
@@ -96,7 +96,7 @@
             android:paddingStart="@dimen/padding_large"
             android:paddingEnd="@dimen/padding_large"
             android:text="@string/description"
-            android:textColor="@color/dark_blue"
+            android:textColor="@color/white"
             android:textSize="14sp"
             android:textStyle="bold"
             app:layout_constraintLeft_toLeftOf="parent"
@@ -104,19 +104,18 @@
             app:layout_constraintWidth_min="@dimen/sat_score_label_min_width" />
 
         <TextView
-            android:id="@+id/critical_reading"
+            android:id="@+id/description"
             android:layout_width="0dp"
-            android:layout_height="30dp"
+            android:layout_height="wrap_content"
             android:layout_marginVertical="@dimen/margin_large"
-            android:layout_marginStart="@dimen/margin_large"
             android:gravity="center_vertical"
             android:paddingStart="@dimen/padding_large"
             android:paddingEnd="@dimen/padding_large"
-            android:textColor="@color/dark_blue"
+            android:textColor="@color/white"
             android:textSize="14sp"
-            android:textStyle="bold"
-            app:layout_constraintStart_toEndOf="@+id/critical_reading_tv"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintStart_toStartOf="@+id/description_tv"
+            app:layout_constraintTop_toBottomOf="@+id/description_tv"
+            app:layout_constraintBottom_toBottomOf="parent"/>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

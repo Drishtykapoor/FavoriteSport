@@ -17,14 +17,14 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
-            android:id="@+id/titleTV"
+            android:id="@+id/teamTitle"
             android:layout_width="0dp"
             android:layout_height="30dp"
             android:layout_marginVertical="@dimen/margin_large"
             android:gravity="center_vertical"
             android:paddingStart="@dimen/padding_large"
             android:paddingEnd="@dimen/padding_large"
-            android:text="@string/sports_item_name"
+            android:text="@string/team_item_name"
             android:textColor="@color/white"
             android:textSize="14sp"
             android:textStyle="bold"
@@ -45,11 +45,11 @@
             android:textSize="14sp"
             android:textStyle="bold"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/titleTV"
-            app:layout_constraintTop_toTopOf="@+id/titleTV" />
+            app:layout_constraintStart_toEndOf="@+id/teamTitle"
+            app:layout_constraintTop_toTopOf="@+id/teamTitle" />
 
         <TextView
-            android:id="@+id/descriptionTV"
+            android:id="@+id/teamDescription"
             android:layout_width="0dp"
             android:layout_height="30dp"
             android:layout_marginVertical="@dimen/margin_large"
@@ -61,7 +61,7 @@
             android:textSize="14sp"
             android:textStyle="bold"
             app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/titleTV"
+            app:layout_constraintTop_toBottomOf="@+id/teamTitle"
             app:layout_constraintWidth_min="@dimen/sat_score_label_min_width" />
 
         <TextView
@@ -77,8 +77,8 @@
             android:textSize="14sp"
             android:textStyle="bold"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/descriptionTV"
-            app:layout_constraintTop_toTopOf="@+id/descriptionTV" />
+            app:layout_constraintStart_toEndOf="@+id/teamDescription"
+            app:layout_constraintTop_toTopOf="@+id/teamDescription" />
 
         <com.google.android.gms.ads.AdView xmlns:ads="http://schemas.android.com/apk/res-auto"
             android:id="@+id/adView"
