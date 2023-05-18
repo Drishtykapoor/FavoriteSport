@@ -1,8 +1,8 @@
 package com.reachmobi.sports
 
 import android.content.Intent
+import android.content.SharedPreferences
 import android.os.Bundle
-import androidx.preference.PreferenceManager
 import com.google.android.gms.ads.MobileAds
 import com.reachmobi.sports.viewmodel.MainActivityViewModel
 import dagger.android.support.DaggerAppCompatActivity
@@ -13,10 +13,12 @@ class MainActivity : DaggerAppCompatActivity() {
     @Inject
     lateinit var experimentalWidgetViewModel: MainActivityViewModel
 
+    @Inject
+    lateinit var sharedPreferences: SharedPreferences
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        val sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this)
-        val teamId = sharedPreferences?.getString("fav_team_id", null)
+        val teamId = sharedPreferences.getString("fav_team_id", null)
         if (teamId.isNullOrEmpty()) {
             startActivity(Intent(this, OnBoardingActivity::class.java))
             finish()
@@ -30,11 +32,9 @@ class MainActivity : DaggerAppCompatActivity() {
         super.onResume()
 
         experimentalWidgetViewModel.getData()
-        experimentalWidgetViewModel.getWidgetLiveData().observe(this){
-            val sharedPreferences =
-                this.let { PreferenceManager.getDefaultSharedPreferences(it) }
-            it.forEach{
-                sharedPreferences?.edit()?.putString(it.key, it.value)?.apply()
+        experimentalWidgetViewModel.getWidgetLiveData().observe(this) {
+            it.forEach {
+                entry -> sharedPreferences.edit()?.putString(entry.key, entry.value)?.apply()
             }
         }
     }

@@ -1,6 +1,7 @@
 package com.reachmobi.sports.view
 
 import android.content.Intent
+import android.content.SharedPreferences
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -35,6 +36,9 @@ class AllTeamsFragment : DaggerFragment() {
     @Inject
     lateinit var logger: FavSportsLogger
 
+    @Inject
+    lateinit var sharedPreferences:SharedPreferences
+
     private val args: AllTeamsFragmentArgs by navArgs()
 
     override fun onCreateView(
@@ -58,9 +62,7 @@ class AllTeamsFragment : DaggerFragment() {
             if (teamID.isNullOrEmpty()) {
                 Toast.makeText(context, "Invalid Selection", Toast.LENGTH_LONG).show()
             } else {
-                val sharedPreferences =
-                    context?.let { PreferenceManager.getDefaultSharedPreferences(it) }
-                sharedPreferences?.edit()?.putString("fav_team_id", teamID)?.apply()
+                sharedPreferences.edit()?.putString("fav_team_id", teamID)?.apply()
                 context?.startActivity(Intent(context, MainActivity::class.java))
                 activity?.finish()
             }

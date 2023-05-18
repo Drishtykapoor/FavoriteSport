@@ -7,7 +7,6 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.core.view.isVisible
 import androidx.lifecycle.lifecycleScope
-import androidx.preference.PreferenceManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.android.gms.ads.AdRequest
 import com.reachmobi.sports.adapter.TeamEventsAdapter
@@ -31,7 +30,8 @@ open class TeamDetailFragment : FavSportsDaggerFragment() {
     @Inject
     lateinit var viewPluginList: Array<ViewPlugin>
 
-    private var sharedPreferences: SharedPreferences? = null
+    @Inject
+    lateinit var sharedPreferences: SharedPreferences
 
 
     override fun onCreateView(
@@ -40,8 +40,6 @@ open class TeamDetailFragment : FavSportsDaggerFragment() {
         savedInstanceState: Bundle?
     ): View {
         binding = TeamDetailFragmentBinding.inflate(inflater, container, false)
-
-        context?.let { sharedPreferences = PreferenceManager.getDefaultSharedPreferences(it) }
 
         viewPluginList.forEach {
             if(isWidgetVisible(it)){
@@ -67,8 +65,7 @@ open class TeamDetailFragment : FavSportsDaggerFragment() {
 
         val adRequest = AdRequest.Builder().build()
         binding.adView.loadAd(adRequest)
-        val sharedPreferences = context?.let { PreferenceManager.getDefaultSharedPreferences(it) }
-        val teamId = sharedPreferences?.getString("fav_team_id", null)
+        val teamId = sharedPreferences.getString("fav_team_id", null)
         viewModel.getTeamsLiveData().observe(viewLifecycleOwner) {
             when (it) {
                 TeamDetailViewState.Empty -> {
@@ -118,8 +115,8 @@ open class TeamDetailFragment : FavSportsDaggerFragment() {
         teamId?.let { viewModel.getTeamEvents(it) }
     }
 
-    fun isWidgetVisible(viewPlugin: ViewPlugin): Boolean {
-        val value = sharedPreferences?.getString(viewPlugin.getName(), null)
+    private fun isWidgetVisible(viewPlugin: ViewPlugin): Boolean {
+        val value = sharedPreferences.getString(viewPlugin.getName(), null)
         if(value!=null && value == "true"){
             return true
         }

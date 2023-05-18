@@ -6,7 +6,6 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.core.view.isVisible
-import androidx.preference.PreferenceManager
 import androidx.recyclerview.widget.GridLayoutManager
 import com.reachmobi.sports.adapter.PlayersAdapter
 import com.reachmobi.sports.databinding.PlayersFragmentBinding
@@ -19,12 +18,15 @@ import javax.inject.Inject
 class AllPlayersFragment : DaggerFragment(), AllPlayersFragmentInterface {
 
     private lateinit var binding: PlayersFragmentBinding
+
     @Inject
     lateinit var adapter: PlayersAdapter
+
     @Inject
     lateinit var viewModel: PlayersViewModel
 
-    private var sharedPreferences: SharedPreferences? = null
+    @Inject
+    lateinit var sharedPreferences: SharedPreferences
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -34,8 +36,6 @@ class AllPlayersFragment : DaggerFragment(), AllPlayersFragmentInterface {
         binding = PlayersFragmentBinding.inflate(inflater, container, false)
         binding.recyclerView.layoutManager = GridLayoutManager(this.requireContext(), 2)
         binding.recyclerView.adapter = adapter
-
-        //context?.let { sharedPreferences = PreferenceManager.getDefaultSharedPreferences(it) }
 
         return binding.root
     }
@@ -57,17 +57,16 @@ class AllPlayersFragment : DaggerFragment(), AllPlayersFragmentInterface {
 
     }
 
-    fun isFlagEnabled(): Boolean {
-        val value = sharedPreferences?.getString("player_rounded_image_view", "false")
-        if(value!="false" && value == "true"){
+    private fun isFlagEnabled(): Boolean {
+        val value = sharedPreferences.getString("player_rounded_image_view", "false")
+        if (value == "true") {
             return true
         }
         return false
     }
 
-    private fun loadData(pageNo: Int=0){
-        val sharedPreferences = context?.let { PreferenceManager.getDefaultSharedPreferences(it) }
-        val teamId = sharedPreferences?.getString("fav_team_id", null)
+    private fun loadData(pageNo: Int = 0) {
+        val teamId = sharedPreferences.getString("fav_team_id", null)
         teamId?.let { viewModel.getData(it, pageNo) }
     }
 
