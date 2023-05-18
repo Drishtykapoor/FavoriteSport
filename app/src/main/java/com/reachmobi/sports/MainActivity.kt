@@ -4,6 +4,8 @@ import android.content.Intent
 import android.content.SharedPreferences
 import android.os.Bundle
 import com.google.android.gms.ads.MobileAds
+import com.google.firebase.FirebaseApp
+import com.google.firebase.ktx.Firebase
 import com.reachmobi.sports.viewmodel.MainActivityViewModel
 import dagger.android.support.DaggerAppCompatActivity
 import javax.inject.Inject
@@ -18,6 +20,7 @@ class MainActivity : DaggerAppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        FirebaseApp.initializeApp(this)
         val teamId = sharedPreferences.getString("fav_team_id", null)
         if (teamId.isNullOrEmpty()) {
             startActivity(Intent(this, OnBoardingActivity::class.java))
