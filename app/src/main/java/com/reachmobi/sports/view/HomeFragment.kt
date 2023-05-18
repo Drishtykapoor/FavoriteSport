@@ -49,10 +49,9 @@ class HomeFragment : DaggerFragment() {
         }.attach()
     }
 
-    override fun onPause() {
-        super.onPause()
-        // this is a bug where it cant restore the state properly
-        binding.run {
+    override fun onStop() {
+        super.onStop()
+            binding.run {
             viewPager.adapter = null
         }
     }

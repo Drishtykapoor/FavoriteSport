@@ -11,7 +11,6 @@ import androidx.recyclerview.widget.RecyclerView
 import com.reachmobi.sports.R
 import com.reachmobi.sports.repository.pojo.Player
 import com.reachmobi.sports.util.FavSportsLogger
-import com.reachmobi.sports.view.HomeFragmentDirections
 import com.reachmobi.sports.view.SearchPlayersFragmentDirections
 import com.squareup.picasso.Picasso
 import javax.inject.Inject
@@ -55,7 +54,7 @@ class SearchPlayersAdapter @Inject constructor(
             itemView.setOnClickListener {
                 logger.logRowClick(
                     mydata[bindingAdapterPosition].strPlayer,
-                    mydata[bindingAdapterPosition].idTeam
+                    mydata[bindingAdapterPosition].idTeam ?: "No Team Found"
                 )
                 navController.navigate(
                     SearchPlayersFragmentDirections.actionSearchPlayersFragmentToPlayersDetailFragment(

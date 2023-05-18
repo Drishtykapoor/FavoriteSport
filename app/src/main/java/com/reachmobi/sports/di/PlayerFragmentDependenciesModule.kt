@@ -4,6 +4,8 @@ import androidx.lifecycle.ViewModelProvider
 import com.reachmobi.sports.repository.PlayersRepository
 import com.reachmobi.sports.repository.PlayersRepositoryImpl
 import com.reachmobi.sports.repository.SportsService
+import com.reachmobi.sports.repository.dao.FavSportsDatabase
+import com.reachmobi.sports.repository.dao.PlayerDao
 import com.reachmobi.sports.view.AllPlayersFragment
 import com.reachmobi.sports.viewmodel.PlayersViewModel
 import com.reachmobi.sports.viewmodel.PlayersViewModelFactory
@@ -43,9 +45,10 @@ interface PlayerFragmentDependenciesModule {
 
         @Provides
         fun provideRepository(
-            service: SportsService
+            service: SportsService,
+            database: FavSportsDatabase
         ): PlayersRepositoryImpl {
-            return PlayersRepositoryImpl(service)
+            return PlayersRepositoryImpl(service, database.playerDao())
         }
 
     }

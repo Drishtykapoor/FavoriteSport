@@ -5,7 +5,7 @@ import com.reachmobi.sports.repository.pojo.TeamDetailResponse
 import com.reachmobi.sports.repository.pojo.UpcomingEvents
 import retrofit2.Response
 
-interface TeamsRepository {
+interface  TeamsRepository {
     suspend fun getAllTeamsForLeague(leagueId : String): Response<AllTeamsResponse>
     suspend fun getTeamDetails(teamId: String): Response<TeamDetailResponse>
     suspend fun getTeamEvents(teamId: String): Response<UpcomingEvents>

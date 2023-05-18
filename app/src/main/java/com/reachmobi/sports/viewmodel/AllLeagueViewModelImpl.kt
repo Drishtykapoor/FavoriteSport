@@ -17,7 +17,7 @@ class AllLeagueViewModelImpl(private val leagueRepository: LeagueRepository): Vi
     override fun getData() {
         sportsData.value = AllLeagueViewState.Loading
 
-        viewModelScope.launch {
+        viewModelScope.launch(Dispatchers.IO) {
             val response = leagueRepository.getData()
             withContext(Dispatchers.Main){
                 if(response.isSuccessful){

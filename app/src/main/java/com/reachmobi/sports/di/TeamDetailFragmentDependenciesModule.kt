@@ -4,7 +4,10 @@ import androidx.lifecycle.ViewModelProvider
 import com.reachmobi.sports.repository.TeamsRepository
 import com.reachmobi.sports.repository.TeamsRepositoryImpl
 import com.reachmobi.sports.repository.TeamsService
+import com.reachmobi.sports.view.TeamDetailExperimentalImageView
+import com.reachmobi.sports.view.TeamDetailExperimentalTextView
 import com.reachmobi.sports.view.TeamDetailFragment
+import com.reachmobi.sports.view.ViewPlugin
 import com.reachmobi.sports.viewmodel.TeamDetailViewModel
 import com.reachmobi.sports.viewmodel.TeamDetailViewModelFactory
 import com.reachmobi.sports.viewmodel.TeamDetailViewModelImpl
@@ -15,6 +18,9 @@ import dagger.Provides
 @Module(includes = [TeamDetailFragmentDependenciesModule.TeamDetailProvidesModule::class])
 interface TeamDetailFragmentDependenciesModule {
 
+//    @Binds
+//    fun provideViewPlugin(teamDetailExperimentalImageView: TeamDetailExperimentalImageView): ViewPlugin
+
     @Binds
     fun provideTeamDetailRepository(teamsRepositoryImpl: TeamsRepositoryImpl): TeamsRepository
 
@@ -23,6 +29,13 @@ interface TeamDetailFragmentDependenciesModule {
 
     @Module
     object TeamDetailProvidesModule {
+
+        @Provides
+        fun providePlugins(
+            plugin: TeamDetailExperimentalTextView,
+            pluginImage: TeamDetailExperimentalImageView
+        ): Array<ViewPlugin> =
+            arrayOf(plugin, pluginImage)
 
         @Provides
         fun provideTeamDetailViewModelFactory(teamsRepository: TeamsRepository): TeamDetailViewModelFactory {
@@ -35,8 +48,7 @@ interface TeamDetailFragmentDependenciesModule {
             teamDetailViewModelFactory: TeamDetailViewModelFactory
         ): TeamDetailViewModelImpl {
             val v = ViewModelProvider(
-                teamDetailFragment,
-                teamDetailViewModelFactory
+                teamDetailFragment, teamDetailViewModelFactory
             )
             return v.get(TeamDetailViewModelImpl::class.java)
         }

@@ -21,6 +21,8 @@ class TeamDetailListAdapter(val navController: NavController) :
     private val mydata = mutableListOf<Teams>()
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
+
+
         val view =
             LayoutInflater.from(parent.context).inflate(R.layout.teams_item_view, parent, false)
         return ViewHolder(view)

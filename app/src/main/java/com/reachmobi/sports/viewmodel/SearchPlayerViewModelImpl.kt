@@ -18,7 +18,7 @@ class SearchPlayerViewModelImpl(private val playersRepository: PlayersRepository
     override fun getData(playerName: String) {
         teamsData.value = SearchPlayerViewState.Loading
 
-        viewModelScope.launch {
+        viewModelScope.launch(Dispatchers.IO) {
             val response = playersRepository.searchPlayer(playerName)
             withContext(Dispatchers.Main) {
                 if (response.isSuccessful) {

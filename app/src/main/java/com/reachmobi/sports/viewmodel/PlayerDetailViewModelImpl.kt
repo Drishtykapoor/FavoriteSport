@@ -19,7 +19,7 @@ class PlayerDetailViewModelImpl(private val teamsRepository: PlayersRepository) 
     override fun getData(playerName: String) {
         playerDetailLiveData.value = PlayerDetailViewState.Loading
 
-        viewModelScope.launch {
+        viewModelScope.launch(Dispatchers.IO) {
             val response = teamsRepository.searchPlayer(playerName)
             withContext(Dispatchers.Main) {
                 if (response.isSuccessful) {

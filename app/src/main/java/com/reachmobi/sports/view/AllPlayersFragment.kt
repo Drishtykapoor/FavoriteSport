@@ -1,5 +1,6 @@
 package com.reachmobi.sports.view
 
+import android.content.SharedPreferences
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -15,13 +16,15 @@ import com.reachmobi.sports.viewmodel.PlayersViewModel
 import dagger.android.support.DaggerFragment
 import javax.inject.Inject
 
-class AllPlayersFragment : DaggerFragment() {
+class AllPlayersFragment : DaggerFragment(), AllPlayersFragmentInterface {
 
     private lateinit var binding: PlayersFragmentBinding
     @Inject
     lateinit var adapter: PlayersAdapter
     @Inject
     lateinit var viewModel: PlayersViewModel
+
+    private var sharedPreferences: SharedPreferences? = null
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -32,11 +35,15 @@ class AllPlayersFragment : DaggerFragment() {
         binding.recyclerView.layoutManager = GridLayoutManager(this.requireContext(), 2)
         binding.recyclerView.adapter = adapter
 
+        //context?.let { sharedPreferences = PreferenceManager.getDefaultSharedPreferences(it) }
+
         return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        adapter.setCallBackForPagination(this)
 
         viewModel.getAllTeamPlayers().observe(viewLifecycleOwner) {
             when (it) {
@@ -46,15 +53,27 @@ class AllPlayersFragment : DaggerFragment() {
                 is PlayersViewState.Error -> showError()
             }
         }
+        loadData()
+
+    }
+
+    fun isFlagEnabled(): Boolean {
+        val value = sharedPreferences?.getString("player_rounded_image_view", "false")
+        if(value!="false" && value == "true"){
+            return true
+        }
+        return false
+    }
+
+    private fun loadData(pageNo: Int=0){
         val sharedPreferences = context?.let { PreferenceManager.getDefaultSharedPreferences(it) }
         val teamId = sharedPreferences?.getString("fav_team_id", null)
-        teamId?.let { viewModel.getData(it) }
-
+        teamId?.let { viewModel.getData(it, pageNo) }
     }
 
     private fun showSuccess(allPlayers: AllPlayers) {
         binding.progressBar.isVisible = false
-        adapter.setData(allPlayers.player)
+        adapter.setData(allPlayers.player, isFlagEnabled())
     }
 
     private fun loading() {
@@ -70,5 +89,9 @@ class AllPlayersFragment : DaggerFragment() {
     private fun showError() {
         binding.progressBar.isVisible = false
         binding.errorImage.isVisible = true
+    }
+
+    override fun loadDataForPage(pageNo: Int) {
+        loadData(pageNo)
     }
 }

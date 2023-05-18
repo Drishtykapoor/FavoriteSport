@@ -53,7 +53,7 @@ class PlayersViewModelImplTest {
     }
 
     private suspend fun setMockSuccessResponse() {
-        Mockito.`when`(playersRepository.getAllTeamPlayers(players[0].idTeam)).thenReturn(
+        Mockito.`when`(playersRepository.getAllTeamPlayers(players[0].idTeam, 1)).thenReturn(
             Response.success(AllPlayers(players))
         )
     }
@@ -67,7 +67,7 @@ class PlayersViewModelImplTest {
             val observer = MyObserver()
             val data = underTest.getAllTeamPlayers()
             data.observeForever(observer)
-            underTest.getData(players[0].idTeam)
+            underTest.getData(players[0].idTeam, 1)
             assertEquals(expectedSuccessResponse, observer.actualResponse)
             data.removeObserver(observer)
         }

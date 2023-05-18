@@ -17,10 +17,12 @@ abstract class MainActivityModule {
             NavigationModule::class,
             HomeFragmentModule::class,
             LoggerModule::class,
+            DatabaseModule::class,
             PlayerFragmentModule::class,
             TeamDetailFragmentModule::class,
             PlayerDetailFragmentModule::class,
             SearchPlayersFragmentModule::class,
+            MainActivityDependenciesModule::class,
             ApiModule::class
         ]
     )

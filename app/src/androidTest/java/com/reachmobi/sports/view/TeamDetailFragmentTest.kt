@@ -1,4 +1,4 @@
-package com.reachmobi.sports
+package com.reachmobi.sports.view
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -8,23 +8,21 @@ import androidx.test.espresso.Espresso
 import androidx.test.espresso.assertion.ViewAssertions
 import androidx.test.espresso.matcher.ViewMatchers.isDisplayed
 import androidx.test.espresso.matcher.ViewMatchers.withId
+import androidx.test.ext.junit.runners.AndroidJUnit4
+import com.reachmobi.sports.R
 import com.reachmobi.sports.adapter.TeamEventsAdapter
 import com.reachmobi.sports.repository.TeamsRepositoryImpl
-import com.reachmobi.sports.repository.TeamsService
-import com.reachmobi.sports.view.TeamDetailFragment
 import com.reachmobi.sports.viewmodel.TeamDetailViewModelImpl
-import io.mockk.mockk
 import org.junit.Test
 import org.junit.runner.RunWith
-import org.robolectric.RobolectricTestRunner
 
-@RunWith(RobolectricTestRunner::class)
+@RunWith(AndroidJUnit4::class)
 class TeamDetailFragmentTest {
 
     @Test
     fun test_isTeamsDataVisible() {
 
-        val teamsService = mockk<TeamsService>()
+        val teamsService = FakeTeamService()
 
         val teamsRepository = TeamsRepositoryImpl(teamsService)
 

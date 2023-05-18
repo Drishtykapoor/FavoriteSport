@@ -1,6 +1,7 @@
 package com.reachmobi.sports
 
 import android.os.Bundle
+import android.os.PersistableBundle
 import dagger.android.support.DaggerAppCompatActivity
 
 class OnBoardingActivity : DaggerAppCompatActivity() {

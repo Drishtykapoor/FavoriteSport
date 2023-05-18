@@ -1,16 +1,17 @@
 package com.reachmobi.sports.view
 
+import android.content.SharedPreferences
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.core.view.isVisible
+import androidx.lifecycle.lifecycleScope
 import androidx.preference.PreferenceManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.android.gms.ads.AdRequest
 import com.reachmobi.sports.adapter.TeamEventsAdapter
 import com.reachmobi.sports.databinding.TeamDetailFragmentBinding
-import com.reachmobi.sports.repository.viewstate.PlayerDetailViewState
 import com.reachmobi.sports.repository.viewstate.TeamDetailViewState
 import com.reachmobi.sports.repository.viewstate.TeamEventViewState
 import com.reachmobi.sports.viewmodel.TeamDetailViewModel
@@ -27,12 +28,35 @@ open class TeamDetailFragment : FavSportsDaggerFragment() {
     @Inject
     lateinit var viewModel: TeamDetailViewModel
 
+    @Inject
+    lateinit var viewPluginList: Array<ViewPlugin>
+
+    private var sharedPreferences: SharedPreferences? = null
+
+
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
         binding = TeamDetailFragmentBinding.inflate(inflater, container, false)
+
+        context?.let { sharedPreferences = PreferenceManager.getDefaultSharedPreferences(it) }
+
+        viewPluginList.forEach {
+            if(isWidgetVisible(it)){
+                context?.let { c ->
+                    binding.experimentalLayout.addView(
+                        it.inflate(
+                            inflater,
+                            container,
+                            c
+                        )
+                    )
+                }
+            }
+        }
+
         return binding.root
     }
 
@@ -92,5 +116,40 @@ open class TeamDetailFragment : FavSportsDaggerFragment() {
 
         teamId?.let { viewModel.getData(it) }
         teamId?.let { viewModel.getTeamEvents(it) }
+    }
+
+    fun isWidgetVisible(viewPlugin: ViewPlugin): Boolean {
+        val value = sharedPreferences?.getString(viewPlugin.getName(), null)
+        if(value!=null && value == "true"){
+            return true
+        }
+        return false
+    }
+    override fun onResume() {
+        super.onResume()
+        viewPluginList.forEach {
+            if(isWidgetVisible(it)){
+                it.fetchData(lifecycleScope)
+            }
+        }
+    }
+
+    override fun onPause() {
+        super.onPause()
+        viewPluginList.forEach {
+            if(isWidgetVisible(it)){
+                it.onPause()
+            }
+
+        }
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        viewPluginList.forEach {
+            if(isWidgetVisible(it)) {
+                it.onDestroy()
+            }
+        }
     }
 }

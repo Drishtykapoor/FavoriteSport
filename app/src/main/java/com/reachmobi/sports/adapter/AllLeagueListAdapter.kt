@@ -42,8 +42,7 @@ class AllLeagueListAdapter @Inject constructor(val navController: NavController)
 
         init {
             itemView.setOnClickListener {
-                navController
-                    .navigate(
+                navController.navigate(
                         AllLeagueFragmentDirections.detailAction(
                             mydata[bindingAdapterPosition].strLeague
                         ),

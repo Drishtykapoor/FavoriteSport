@@ -17,7 +17,7 @@ class AllTeamsViewModelImpl (private val teamsRepository: TeamsRepository): View
     override fun getData(leagueId: String) {
         teamsData.value = AllTeamsViewState.Loading
 
-        viewModelScope.launch {
+        viewModelScope.launch(Dispatchers.IO) {
             val response = teamsRepository.getAllTeamsForLeague(leagueId)
             withContext(Dispatchers.Main){
                 if(response.isSuccessful){
@@ -40,4 +40,8 @@ class AllTeamsViewModelImpl (private val teamsRepository: TeamsRepository): View
     }
 
     override fun getTeamsLiveData(): LiveData<AllTeamsViewState> = teamsData
+
+    override fun getPageNoData(pageNo: Int) {
+        TODO("Not yet implemented")
+    }
 }

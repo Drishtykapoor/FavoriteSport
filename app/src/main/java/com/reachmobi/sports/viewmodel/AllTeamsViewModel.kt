@@ -6,4 +6,6 @@ import com.reachmobi.sports.repository.viewstate.AllTeamsViewState
 interface AllTeamsViewModel {
     fun getData(teamsID: String)
     fun getTeamsLiveData(): LiveData<AllTeamsViewState>
+
+    fun getPageNoData(pageNo: Int)
 }

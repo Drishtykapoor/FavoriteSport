@@ -28,7 +28,7 @@ class TeamDetailViewModelImpl(private val teamsRepository: TeamsRepository) : Vi
     override fun getData(teamId: String) {
         teamsData.value = TeamDetailViewState.Loading
 
-        viewModelScope.launch {
+        viewModelScope.launch(Dispatchers.IO) {
             val response = teamsRepository.getTeamDetails(teamId)
             withContext(Dispatchers.Main) {
                 if (response.isSuccessful) {

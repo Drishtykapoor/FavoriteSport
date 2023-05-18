@@ -11,6 +11,7 @@ import androidx.navigation.NavController
 import androidx.recyclerview.widget.RecyclerView
 import com.reachmobi.sports.R
 import com.reachmobi.sports.repository.pojo.Teams
+import com.reachmobi.sports.view.AllPlayersFragmentInterface
 import com.squareup.picasso.Picasso
 import javax.inject.Inject
 
