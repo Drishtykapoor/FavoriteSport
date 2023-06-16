@@ -21,4 +21,4 @@ It's an application for tracking your favorite sports team, which will show upda
 
 - There is a search functionality at the top of the app bar where the user can search any player by it's name and it will take user to the description page.
 
-  <img width="399" alt="FavSport_UniversalSearch" src="https://github.com/Drishtykapoor/FavoriteSport/assets/35379752/7abae291-6749-486b-9c44-32c251f696fa">
+  <img width="300" alt="FavSport_UniversalSearch" src="https://github.com/Drishtykapoor/FavoriteSport/assets/35379752/7abae291-6749-486b-9c44-32c251f696fa">
